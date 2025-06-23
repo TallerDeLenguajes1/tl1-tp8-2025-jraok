@@ -1,5 +1,5 @@
 using System;
-namespace Tareas;
+namespace EspacioTareas;
 
 public class Tarea{
     // campos del objeto tarea
@@ -15,10 +15,10 @@ public class Tarea{
     private static Random semilla = new Random();
 
     // constructor
-    public Tarea(int IdIngresado, string texto){
+    public Tarea(string texto, int IdIngresado){
         if (string.IsNullOrEmpty(texto))
         {
-            throw new ArgumentException("\nLa descripción no puede estar vacía, REINGRESE");
+            throw new ArgumentException("\nLa descripción no puede estar vacía");
         }
         this.tareaId = IdIngresado;
         this.duracion = semilla.Next(10,101);

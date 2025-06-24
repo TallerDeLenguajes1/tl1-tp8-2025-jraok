@@ -58,5 +58,22 @@ do
     {
         break;
     }
-    
+    switch (opcion)
+    {
+        case 1:
+            Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
+            if (tareasPendientes.Count == 0)
+            {
+                Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");
+                break;
+            }
+           
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+    }
 } while (true);

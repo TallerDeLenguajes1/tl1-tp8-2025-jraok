@@ -61,13 +61,13 @@ do
     {
         case 1:
             Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
-            if (tareasPendientes.Count == 0)
-            {
-                Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");
-                break;
-            }
             do
             {
+                if (tareasPendientes.Count == 0)
+                {
+                    Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");
+                    break;
+                }
                 Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
                 int idSelecionado;
                 foreach (Tarea variable in tareasPendientes)

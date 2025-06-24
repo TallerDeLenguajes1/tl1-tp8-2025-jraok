@@ -67,7 +67,23 @@ do
                 Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");
                 break;
             }
-           
+            do
+            {
+                Console.WriteLine($"\t{"ID",5} {"DESCRIPCION",12} {"DURACION",9}");
+                int idSelecionado;
+                foreach (Tarea variable in tareasPendientes)
+                {
+                    Console.WriteLine($"{variable.TareaId,5} {variable.Descripcion,12} {variable.Duracion,9}");
+                }
+                Console.Write("\n\tIngrese el ID de la tarea: ");
+                string input = Console.ReadLine();
+               
+                Console.WriteLine("\n\t\tDesea marcar otra tarea?\n\t Cualquier tecla para salir | ENTER para continuar");
+                if (Console.ReadKey(true).Key!= ConsoleKey.Enter)
+                {
+                    break;
+                }
+            } while (true);
             break;
         case 2:
             break;

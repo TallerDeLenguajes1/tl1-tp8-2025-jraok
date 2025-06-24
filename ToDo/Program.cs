@@ -1,6 +1,5 @@
 ﻿using System;
 using EspacioTareas;
-using Internal;
 
 // listas para las tareas pendientes y completadas
 List<Tarea> tareasPendientes = new List<Tarea>();
@@ -8,7 +7,7 @@ List<Tarea> tareasCompletadas = new List<Tarea>();
 
 // variables para el manejo del menu y entradas de caracteres
 int opcion, indice = 1;
-string entrada, entradaMenu;
+string? entrada, entradaMenu;
 
 // mensajes
 Console.WriteLine("\n\t\t---TALLER DE LENGUAJES I---");
@@ -69,15 +68,15 @@ do
             }
             do
             {
-                Console.WriteLine($"\t{"ID",5} {"DESCRIPCION",12} {"DURACION",9}");
+                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
                 int idSelecionado;
                 foreach (Tarea variable in tareasPendientes)
                 {
-                    Console.WriteLine($"{variable.TareaId,5} {variable.Descripcion,12} {variable.Duracion,9}");
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9}");
                 }
                 Console.Write("\n\tIngrese el ID de la tarea: ");
-                string input = Console.ReadLine();
-                if (!string.IsNullOrEmpty(input) || int.TryParse(input, out idSelecionado))
+                string? input = Console.ReadLine();
+                if (!string.IsNullOrEmpty(input) && int.TryParse(input, out idSelecionado))
                 {
                     Tarea? seleccionada = tareasPendientes.Find(buscado => buscado.TareaId == idSelecionado);
                     if (seleccionada != null)

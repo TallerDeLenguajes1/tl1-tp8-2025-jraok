@@ -80,7 +80,14 @@ do
                 if (!string.IsNullOrEmpty(input) || int.TryParse(input, out idSelecionado))
                 {
                     Tarea? seleccionada = tareasPendientes.Find(buscado => buscado.TareaId == idSelecionado);
-                    
+                    if (seleccionada != null)
+                    {
+                        tareasPendientes.Remove(seleccionada);
+                        tareasCompletadas.Add(seleccionada);
+                        Console.WriteLine($"\t\tTAREA {seleccionada.TareaId} MARCADA CON EXITO");
+                    }else{
+                        Console.WriteLine("\t\tID NO ENCONTRADO");
+                    }
                 }else{
                     Console.WriteLine("\n\t\t---ENTRADA NO VALIDA---");
                 }

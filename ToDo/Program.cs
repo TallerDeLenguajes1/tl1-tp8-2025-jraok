@@ -1,5 +1,6 @@
 ﻿using System;
 using EspacioTareas;
+using Internal;
 
 // listas para las tareas pendientes y completadas
 List<Tarea> tareasPendientes = new List<Tarea>();
@@ -38,3 +39,24 @@ do
     }
 } while (true);
 
+do
+{
+    Console.WriteLine("\n\t\t---Menu de opciones---");
+    Console.WriteLine("\t1-Marcar como completada");
+    Console.WriteLine("\t2-Listar tareas pendientes");
+    Console.WriteLine("\t3-Buscar por descripcion");
+    Console.WriteLine("\t4-Listar todas las tareas");
+    Console.WriteLine("\t5-Salir");
+    Console.Write("\n\tIngrese una opcion: ");
+    entradaMenu = Console.ReadLine();
+    if (!int.TryParse(entradaMenu,out opcion) || opcion < 1 || opcion > 5)
+    {
+        Console.WriteLine("\n\t\t---OPCION IVALIDA REINGRESE---");
+        continue;
+    }
+    if (opcion == 5)
+    {
+        break;
+    }
+    
+} while (true);

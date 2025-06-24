@@ -77,7 +77,13 @@ do
                 }
                 Console.Write("\n\tIngrese el ID de la tarea: ");
                 string input = Console.ReadLine();
-               
+                if (!string.IsNullOrEmpty(input) || int.TryParse(input, out idSelecionado))
+                {
+                    Tarea? seleccionada = tareasPendientes.Find(buscado => buscado.TareaId == idSelecionado);
+                    
+                }else{
+                    Console.WriteLine("\n\t\t---ENTRADA NO VALIDA---");
+                }
                 Console.WriteLine("\n\t\tDesea marcar otra tarea?\n\t Cualquier tecla para salir | ENTER para continuar");
                 if (Console.ReadKey(true).Key!= ConsoleKey.Enter)
                 {

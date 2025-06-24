@@ -72,7 +72,7 @@ do
                 int idSelecionado;
                 foreach (Tarea variable in tareasPendientes)
                 {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9}");
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
                 }
                 Console.Write("\n\tIngrese el ID de la tarea: ");
                 string? input = Console.ReadLine();
@@ -98,10 +98,44 @@ do
             } while (true);
             break;
         case 2:
+            Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
+            if (tareasPendientes.Count != 0)
+            {
+                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
+                foreach (Tarea variable in tareasPendientes)
+                {
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
+                }
+            }else{
+                Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");    
+            }
             break;
         case 3:
             break;
         case 4:
+            Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
+            if (tareasPendientes.Count != 0)
+            {
+                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
+                foreach (Tarea variable in tareasPendientes)
+                {
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
+                }
+            }else{
+                Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");    
+            }
+
+            Console.WriteLine("\n\t\t---TAREAS COMPLETADAS---");
+            if (tareasPendientes.Count != 0)
+            {
+                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
+                foreach (Tarea variable in tareasPendientes)
+                {
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
+                }
+            }else{
+                Console.WriteLine("\n\t\tNO HAY TAREAS COMPLETADAS");    
+            }
             break;
     }
 } while (true);

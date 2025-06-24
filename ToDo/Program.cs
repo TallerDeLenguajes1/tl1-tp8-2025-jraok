@@ -126,10 +126,10 @@ do
             }
 
             Console.WriteLine("\n\t\t---TAREAS COMPLETADAS---");
-            if (tareasPendientes.Count != 0)
+            if (tareasCompletadas.Count != 0)
             {
                 Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
-                foreach (Tarea variable in tareasPendientes)
+                foreach (Tarea variable in tareasCompletadas)
                 {
                     Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
                 }

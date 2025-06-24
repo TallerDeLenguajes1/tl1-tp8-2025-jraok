@@ -7,7 +7,7 @@ List<Tarea> tareasCompletadas = new List<Tarea>();
 
 // variables para el manejo del menu y entradas de caracteres
 int opcion, indice = 1;
-string? entrada, entradaMenu;
+string? entrada;
 
 // mensajes
 Console.WriteLine("\n\t\t---TALLER DE LENGUAJES I---");
@@ -47,8 +47,8 @@ do
     Console.WriteLine("\t4-Listar todas las tareas");
     Console.WriteLine("\t5-Salir");
     Console.Write("\n\tIngrese una opcion: ");
-    entradaMenu = Console.ReadLine();
-    if (!int.TryParse(entradaMenu,out opcion) || opcion < 1 || opcion > 5)
+    entrada = Console.ReadLine();
+    if (!int.TryParse(entrada,out opcion) || opcion < 1 || opcion > 5)
     {
         Console.WriteLine("\n\t\t---OPCION IVALIDA REINGRESE---");
         continue;
@@ -72,7 +72,7 @@ do
                 int idSelecionado;
                 foreach (Tarea variable in tareasPendientes)
                 {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
                 }
                 Console.Write("\n\tIngrese el ID de la tarea: ");
                 string? input = Console.ReadLine();
@@ -104,13 +104,14 @@ do
                 Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
                 foreach (Tarea variable in tareasPendientes)
                 {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
                 }
             }else{
                 Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");    
             }
             break;
         case 3:
+            
             break;
         case 4:
             Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
@@ -119,7 +120,7 @@ do
                 Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
                 foreach (Tarea variable in tareasPendientes)
                 {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
                 }
             }else{
                 Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");    
@@ -131,7 +132,7 @@ do
                 Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
                 foreach (Tarea variable in tareasCompletadas)
                 {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion + " min",9}");
+                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
                 }
             }else{
                 Console.WriteLine("\n\t\tNO HAY TAREAS COMPLETADAS");    

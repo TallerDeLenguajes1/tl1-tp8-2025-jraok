@@ -19,7 +19,7 @@ do{
     Console.Write("\n\tElija una opcion (ENTER PARA CANCELAR):\t");
     operacionMenu = Console.ReadLine();     /* lectura de la opcion elegida del menu */
 
-    if(string.IsNullOrEmpty(operacionMenu))break; /* verificacion de qque si se cancelo la operacion */
+    if(string.IsNullOrEmpty(operacionMenu))break; /* verificacion de la cancelacion */
 
     // verificacion que no se ingrese un string u opcion invalida
     if(!double.TryParse(operacionMenu, out opcion) || (opcion < 1 || opcion > 5)){

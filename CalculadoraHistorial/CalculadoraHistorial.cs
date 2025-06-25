@@ -1,38 +1,43 @@
 namespace EspacioCalculadoraHistorial
 {
-    public class Calculadora
-    {
-        private double dato;
-        public double Resultado { get { return dato; } }
-        public void Sumar(double numero)
-        {
-            dato += numero;
-        }
+    // enum con las operaciones posibles para esta calculadora
+    enum TipoOperacion{
+        Sumar,
+        Restar,
+        Multiplicar,
+        Dividir,
+        Limpiar,
+    }
+    // clase para las operaciones de la calculadora
+    public class Operacion{ 
+        // campos de la clase con lso datos a guardar
+        private TipoOperacion operacion;
+        private double resultadoAnterior;
+        private double nuevoValor;
 
-        public void Restar(double numero)
-        {
-            dato -= numero;
+        // propiedades publicas para leer los campos
+        public TipoOperacion Operacion => operacion;
+        public double ResultadoAnterior => resultadoAnterior;        
+        public double nuevoValor => nuevoValor;
+        
+        // constructor para la creacion de una instancia nueva
+        public Operacion(TipoOperacion operacion, double nuevoValor, double resultadoAnterior){
+            this.operacion = operacion;
+            this.resultadoAnterior = resultadoAnterior;
+            this.nuevoValor = nuevoValor;
         }
-
-        public void Multiplicar(double numero)
-        {
-            dato *= numero;
-        }
-
-        public void Dividir(double numero)
-        {
-            if (numero != 0)
-            {
-                dato /= numero;
+        // propiedad publica para mostrar las operaciones de la calculadora
+        public double Resultado{
+            get{
+                return operacion switch{
+                    TipoOperacion.Sumar => resultadoAnterior + nuevoValor,
+                    TipoOperacion.Restar => resultadoAnterior - nuevoValor,
+                    TipoOperacion.Multiplicar => resultadoAnterior * nuevoValor,
+                    TipoOperacion.Dividir => nuevoValor != 0 ? resultadoAnterior/nuevoValor : double.NaN,
+                    TipoOperacion.Limpiar => 0,
+                    _ => resultadoAnterior
+                };
             }
-            else
-            {
-                Console.WriteLine("\n\tValor invalido, no se puede dividir por 0");
-            }
-        }
-        public void Limpiar()
-        {
-            dato = 0;
         }
     }
 }

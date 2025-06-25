@@ -34,22 +34,13 @@ do{
     string entrada = Console.ReadLine(); /* lectura de la entrada del usuario */
     if (double.TryParse(entrada, out numero))
     {    
+        Operacion nueva = null;
         switch(opcion){
-            case 1:
-                Operacion nueva = new Operacion(TipoOperacion.Sumar, numero, resultado);
-                break;
-            case 2:
-                Operacion nueva = new Operacion(TipoOperacion.Restar, numero, resultado);
-                break;
-            case 3:
-                Operacion nueva = new Operacion(TipoOperacion.Multiplicar, numero, resultado);
-                break;
-            case 4:
-                Operacion nueva = new Operacion(TipoOperacion.Dividir, numero, resultado);
-                break;
-            case 5:
-                Operacion nueva = new Operacion(TipoOperacion.Limpiar, numero, resultado);
-                break;
+            case 1: nueva = new Operacion(TipoOperacion.Sumar, numero, resultado); break;
+            case 2: nueva = new Operacion(TipoOperacion.Restar, numero, resultado); break;
+            case 3: nueva = new Operacion(TipoOperacion.Multiplicar, numero, resultado); break;
+            case 4: nueva = new Operacion(TipoOperacion.Dividir, numero, resultado); break;
+            case 5: nueva = new Operacion(TipoOperacion.Limpiar, numero, resultado); break;
             resultado = nueva.Resultado;
             historial.Add(nueva);
             if (!double.IsNaN(resultado))

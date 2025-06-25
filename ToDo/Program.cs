@@ -111,7 +111,40 @@ do
             }
             break;
         case 3:
+            Console.Write("\n\t\tIngrese la descripcion a buscar : ");
             
+            string? buscada = Console.ReadLine();
+            if (!string.IsNullOrEmpty(buscada))
+            {
+                List<Tarea> pendientes = tareasPendientes.FindAll(tarea => tarea.Descripcion.ToLower().Contains(buscada.ToLower()));
+                List<Tarea> completadas = tareasCompletadas.FindAll(tarea => tarea.Descripcion.ToLower().Contains(buscada.ToLower()));
+                if (pendientes.Count > 0 || completadas.Count > 0)
+                {
+                    if (pendientes.Count > 0)
+                    {   
+                        Console.WriteLine("\n\t\tTAREAS PENDIENTES ENCONTRADAS");
+                        Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
+                        foreach (Tarea variable in pendientes)
+                        {
+                            Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
+                        }
+                    }
+                    if (completadas.Count > 0)
+                    {   
+                        Console.WriteLine("\n\t\tTAREAS COMPLETADAS ENCONTRADAS");
+                        Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
+                        foreach (Tarea variable in completadas)  
+                        {
+                            Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
+                        }
+                    }
+                }else{
+                    Console.WriteLine("\n\t\t---SIN COINCIDENCIAS---");
+                }
+            }else{
+                Console.WriteLine("\n\t\tENTRADA INVALIDA");
+            }
+
             break;
         case 4:
             Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");

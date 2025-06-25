@@ -1,5 +1,4 @@
 ﻿using EspacioCalculadoraHistorial;
-using Internal;
 
 // variables para el programa
 double numero = 0,resultado = 0;

@@ -17,7 +17,7 @@ do{
     Console.WriteLine("\t2. Restar");
     Console.WriteLine("\t3. Multiplicar");
     Console.WriteLine("\t4. Dividir");
-    Console.WriteLine("\t5. Limpiar");
+    Console.WriteLine("\t5. Borrar Historial");
     Console.WriteLine("\t6. Mostrar Historial");
     Console.Write("\n\tElija una opcion (ENTER PARA CANCELAR): ");
     operacionMenu = Console.ReadLine();     /* lectura de la opcion elegida del menu */
@@ -30,6 +30,18 @@ do{
         continue; /* salto al proximo ciclo en caso de que la entrada sea invalida */
     }
 
+    if (opcion == 6)
+    {
+        Console.WriteLine("\n\t\t---HISTORIAL---");
+        Console.WriteLine($"\n\t{"OPERACION", 10} {"NUMERO INGRESADO", 17} {"RESULTADO ANTERIOR", 19}");
+        Console.WriteLine(new string('-',48));
+        foreach (Operacion operacion in historial)
+        {
+            Console.WriteLine($"\n\t{operacion.Operacion, 10} {operacion.NuevoValor, 17} {operacion.ResultadoAnterior, 19}");
+        }
+        goto preguntaContinuar;
+    }
+
     Console.Write("\n\tIngrese el número a operar: ");
     string entrada = Console.ReadLine(); /* lectura de la entrada del usuario */
     if (double.TryParse(entrada, out numero))
@@ -40,28 +52,33 @@ do{
             case 2: nueva = new Operacion(TipoOperacion.Restar, numero, resultado); break;
             case 3: nueva = new Operacion(TipoOperacion.Multiplicar, numero, resultado); break;
             case 4: nueva = new Operacion(TipoOperacion.Dividir, numero, resultado); break;
-            case 5: nueva = new Operacion(TipoOperacion.Limpiar, numero, resultado); break;
-            resultado = nueva.Resultado;
-            historial.Add(nueva);
-            if (!double.IsNaN(resultado))
-            {
-                Console.WriteLine($"\n\tResultado de la operacion: {resultado}");   
-            }else{
-                Console.WriteLine("\n\t\t---OPERACION INVALIDA---");   
-            }
+            case 5: 
+                    historial.Clear();
+                    Console.WriteLine("\n\t\t---HISTORIAL BORRADO---");
+                    nueva = new Operacion(TipoOperacion.Limpiar, numero, resultado);
+                break;
+        }
+        resultado = nueva.Resultado;
+        historial.Add(nueva);
+        if (!double.IsNaN(resultado))
+        {
+            Console.WriteLine($"\n\tResultado de la operacion: {resultado}");   
+        }else{
+            Console.WriteLine("\n\t\t---OPERACION INVALIDA---");   
         }
     }else{
         Console.WriteLine("\n\t\tENTRADA INVALIDA");
     }
-    
+
+    preguntaContinuar:
     do{
-        Console.Write("\n\tDesea continuar? (ESC = NO | ENTER = SI): ");
+        Console.Write("\n\t\tDesea continuar? (ESC = NO | ENTER = SI): ");
         ConsoleKey tecla = Console.ReadKey().Key;
         if(tecla == ConsoleKey.Escape || tecla == ConsoleKey.Enter){
             continuar = (tecla == ConsoleKey.Enter) ? true : false;
             break;
         }
-        Console.WriteLine("\n\t---OPCION NO VALIDA, REINGRESE---");
+        Console.WriteLine("\n\t\t---OPCION NO VALIDA, REINGRESE---");
     }while(true); /* no es necesario cambiar la condicion pues cuando se cumplae el if se rompe el bucle */
 
     Console.WriteLine(new string('-', 50)); // separador visual

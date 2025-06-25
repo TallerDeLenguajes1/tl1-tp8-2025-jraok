@@ -5,6 +5,19 @@ using EspacioTareas;
 List<Tarea> tareasPendientes = new List<Tarea>();
 List<Tarea> tareasCompletadas = new List<Tarea>();
 
+// List<Tarea> tareasPendientes = new List<Tarea>
+// {
+//     new Tarea("Revisar apuntes de programación", 1001),
+//     new Tarea("Armar resumen de circuitos", 1002),
+//     new Tarea("Leer capítulo de estructuras", 1003)
+// };
+
+// List<Tarea> tareasCompletadas = new List<Tarea>
+// {
+//     new Tarea("Entregar TP de lógica", 2001),
+//     new Tarea("Asistir a clase de arquitectura", 2002),
+//     new Tarea("Corregir errores del código en C", 2003)
+// };
 // variables para el manejo del menu y entradas de caracteres
 int opcion, indice = 1;
 string? entrada;

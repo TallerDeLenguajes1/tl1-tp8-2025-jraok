@@ -31,60 +31,64 @@ do{
         Console.WriteLine("\t\t---ERROR OPCION NO VALIDA, REINGRESE---");
         continue; /* salto al proximo ciclo en caso de que la entrada sea invalida */
     }
-
+    // si la opcion es 6 muestro el historial
     if (opcion == 6)
     {
         Console.WriteLine("\n\t\t---HISTORIAL---");
-        if (historial.Count > 0)
+        if (historial.Count > 0)    /* verifico que hay operaciones en el historial */
         {
-            Console.WriteLine($"\n\t{"| OPERACIÓN", -13} {"| NUMERO_INGRESADO", -17} {"| RESULTADO_ANTERIOR", -19} {"| RESULTADO", -10}");
-            Console.WriteLine(new string('-',80));
-            foreach (Operacion actual in historial)
+            Console.WriteLine($"\n\t{"| OPERACIÓN", -13} {"| NUMERO_INGRESADO", -17} {"| RESULTADO_ANTERIOR", -19} {"| RESULTADO", -10}");  /* mensaje con las columnas de datos */
+            Console.WriteLine(new string('-',80));  /* separador visual */
+            foreach (Operacion actual in historial) /* recorro el historial */
             {
-                Console.WriteLine($"\t| {actual.OperacionGuardada, -11} | {actual.NuevoValor, -16} | {actual.ResultadoAnterior, -18} | {actual.Resultado, -10}");
+                Console.WriteLine($"\t| {actual.OperacionGuardada, -11} | {actual.NuevoValor, -16} | {actual.ResultadoAnterior, -18} | {actual.Resultado, -10}");   /* impresion de los datos de cada operacion */
             }
         }else{
-            Console.WriteLine("\n\t\t---HISTORIAL VACÍO---");
+            Console.WriteLine("\n\t\t---HISTORIAL VACÍO---");   /* mensaje de historial vacio */
         }
-        goto preguntaContinuar;
+        goto preguntaContinuar; /* despues de mostrar el historial salto al mensaje de continuar */
     }
-    
+    /* nueva instancia para la lista */
     Operacion nueva = null;
-
+    /* si la opcion no es limpiar */
     if (opcion != 5)
     {       
-        Console.Write("\n\tIngrese el número a operar: ");
+        Console.Write("\n\tIngrese el número a operar: ");  /* mensaje para el numero a operar */
         string entrada = Console.ReadLine(); /* lectura de la entrada del usuario */
-        if (double.TryParse(entrada, out numero))
-        {    
+        if (double.TryParse(entrada, out numero))   /* verifico que se haya ingresado un numero */
+        {      
+            // switch de opciones con la configuracion para cada tipo de operacion
             switch(opcion){
                 case 1: nueva = new Operacion(TipoOperacion.Sumar, numero, memoria); break;
                 case 2: nueva = new Operacion(TipoOperacion.Restar, numero, memoria); break;
                 case 3: nueva = new Operacion(TipoOperacion.Multiplicar, numero, memoria); break;
                 case 4: nueva = new Operacion(TipoOperacion.Dividir, numero, memoria); break;
             }
-            memoria = (!double.IsNaN(nueva.Resultado)) ? nueva.Resultado : memoria;
-            historial.Add(nueva);
-            Console.WriteLine(!double.IsNaN(nueva.Resultado) ? 
+            // logica para guardar el resultado de la operacion
+            memoria = (!double.IsNaN(nueva.Resultado)) ? nueva.Resultado : memoria; /* si el resultado es invalido mantengo el ultimo valor */
+            historial.Add(nueva);   /* agrego la nueva operacion al historial */
+            // impresion del resultado de la operacion
+            Console.WriteLine(!double.IsNaN(nueva.Resultado) ? /* solo imprimo si el resultado es valido */
                     $"\n\tResultado de la operación: {nueva.Resultado}" 
                     : "\n\t\t---OPERACIÓN INVÁLIDA---");
         }else{
-            Console.WriteLine("\n\t\tENTRADA INVALIDA");
+            Console.WriteLine("\n\t\tENTRADA INVALIDA");    /* mensaje en caso de ingresar un string */
         }
-    }else{
-        historial.Clear();
-        Console.WriteLine("\n\t\t---HISTORIAL BORRADO---");
-        memoria = 0;
-        nueva = new Operacion(TipoOperacion.Limpiar, 0, memoria);
-        historial.Add(nueva);
+    }else{  /* logica para limpiar el historial */
+        historial.Clear();  /* metodo para limpiar el historial */
+        Console.WriteLine("\n\t\t---HISTORIAL BORRADO---"); /* mensaje de exito */
+        memoria = 0;    /* reestablesco la memoria en 0 */
+        nueva = new Operacion(TipoOperacion.Limpiar, 0, memoria);   /* envio un 0 para el numero ingresado */
+        historial.Add(nueva);   /* agrego la nueva operacion al historial */
     }
-
+    /* salto para despues de mostar el historial */
     preguntaContinuar:
+    /* bucle para continuar operando */
     do{
         Console.Write("\n\t\tDesea continuar? (ESC = NO | ENTER = SÍ): ");
         ConsoleKey tecla = Console.ReadKey(true).Key;
-        if(tecla == ConsoleKey.Escape || tecla == ConsoleKey.Enter){
-            continuar = (tecla == ConsoleKey.Enter) ? true : false;
+        if(tecla == ConsoleKey.Escape || tecla == ConsoleKey.Enter){    /* solo entra si se apreto esc o enter */
+            continuar = (tecla == ConsoleKey.Enter) ? true : false; /* le asigno un valor a continuar segun la tecla que se apreto */
             break;
         }
         Console.WriteLine("\n\t\t---OPCIÓN NO VALIDA, REINGRESE---");

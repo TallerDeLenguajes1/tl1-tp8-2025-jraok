@@ -1,6 +1,24 @@
 ﻿using System;
 using EspacioTareas;
 
+// funcion par mostrar una lista de tareas 
+static void MostrarTareas(List<Tarea> lista, string titulo)
+{
+    Console.WriteLine($"\n\t\t--- {titulo.ToUpper()} ---");
+    if (lista.Count != 0)
+    {
+        Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-50} {"DURACION",10}");
+        Console.WriteLine("\t" + new string('-', 70));
+        foreach (Tarea tarea in lista)
+        {
+            Console.WriteLine($"\t{tarea.TareaId,-5} {tarea.Descripcion,-50} {tarea.Duracion,10} min");
+        }
+    }else{
+        Console.WriteLine("\t\tNO HAY TAREAS");
+
+    }
+}
+
 // listas para las tareas pendientes y completadas
 List<Tarea> tareasPendientes = new List<Tarea>();
 List<Tarea> tareasCompletadas = new List<Tarea>();
@@ -73,20 +91,9 @@ do
     switch (opcion)
     {
         case 1:
-            Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
             do
             {
-                if (tareasPendientes.Count == 0)
-                {
-                    Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");
-                    break;
-                }
-                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
-                int idSelecionado;
-                foreach (Tarea variable in tareasPendientes)
-                {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
-                }
+                MostrarTareas(tareasPendientes,"tareas pendientes");
                 Console.Write("\n\tIngrese el ID de la tarea: ");
                 string? input = Console.ReadLine();
                 if (!string.IsNullOrEmpty(input) && int.TryParse(input, out idSelecionado))
@@ -111,17 +118,7 @@ do
             } while (true);
             break;
         case 2:
-            Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
-            if (tareasPendientes.Count != 0)
-            {
-                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
-                foreach (Tarea variable in tareasPendientes)
-                {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
-                }
-            }else{
-                Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");    
-            }
+            MostrarTareas(tareasPendientes,"tareas pendientes");
             break;
         case 3:
             Console.Write("\n\t\tIngrese la descripcion a buscar : ");
@@ -135,54 +132,25 @@ do
                 {
                     if (pendientes.Count > 0)
                     {   
-                        Console.WriteLine("\n\t\tTAREAS PENDIENTES ENCONTRADAS");
-                        Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
-                        foreach (Tarea variable in pendientes)
-                        {
-                            Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
-                        }
+                        MostrarTareas(tareasPendientes,"tareas pendientes encontradas");
                     }
                     if (completadas.Count > 0)
                     {   
-                        Console.WriteLine("\n\t\tTAREAS COMPLETADAS ENCONTRADAS");
-                        Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
-                        foreach (Tarea variable in completadas)  
-                        {
-                            Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
-                        }
+                        MostrarTareas(tareasCompletadas,"tareas completadas encontradas");
                     }
                 }else{
                     Console.WriteLine("\n\t\t---SIN COINCIDENCIAS---");
                 }
             }else{
-                Console.WriteLine("\n\t\tENTRADA INVALIDA");
+                Console.WriteLine("\n\t\t---ENTRADA INVALIDA---");
             }
 
             break;
         case 4:
-            Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
-            if (tareasPendientes.Count != 0)
-            {
-                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
-                foreach (Tarea variable in tareasPendientes)
-                {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
-                }
-            }else{
-                Console.WriteLine("\n\t\tNO HAY TAREAS PENDIENTES");    
-            }
+            MostrarTareas(tareasPendientes,"tareas pendientes");
 
-            Console.WriteLine("\n\t\t---TAREAS COMPLETADAS---");
-            if (tareasCompletadas.Count != 0)
-            {
-                Console.WriteLine($"\t{"ID",-5} {"DESCRIPCION",-30} {"DURACION",9}");
-                foreach (Tarea variable in tareasCompletadas)
-                {
-                    Console.WriteLine($"\t{variable.TareaId,-5} {variable.Descripcion,-30} {variable.Duracion,9} min");
-                }
-            }else{
-                Console.WriteLine("\n\t\tNO HAY TAREAS COMPLETADAS");    
-            }
+            MostrarTareas(tareasCompletadas,"tareas completadas");
             break;
     }
 } while (true);
+

@@ -10,6 +10,7 @@ List<Operacion> historial = new List<Operacion>();
 
 // estructura logica para el programa
 do{
+    Console.Clear();
     Console.WriteLine(new string('-', 50)); // separador visual
     // menu de opciones
     Console.WriteLine("\n\t\t----TALLER DE LENGUAJES I----");
@@ -36,11 +37,11 @@ do{
         Console.WriteLine("\n\t\t---HISTORIAL---");
         if (historial.Count > 0)
         {
-            Console.WriteLine($"\n\t{"OPERACIÓN", 10} {"NUMERO_INGRESADO", 17} {"RESULTADO_ANTERIOR", 19} {"RESULTADO", 10}");
-            Console.WriteLine(new string('-',48));
+            Console.WriteLine($"\n\t{"| OPERACIÓN", -13} {"| NUMERO_INGRESADO", -17} {"| RESULTADO_ANTERIOR", -19} {"| RESULTADO", -10}");
+            Console.WriteLine(new string('-',80));
             foreach (Operacion actual in historial)
             {
-                Console.WriteLine($"\n\t{actual.OperacionGuardada, 10} {actual.NuevoValor, 17} {actual.ResultadoAnterior, 19} {actual.Resultado, 10}");
+                Console.WriteLine($"\t| {actual.OperacionGuardada, -11} | {actual.NuevoValor, -16} | {actual.ResultadoAnterior, -18} | {actual.Resultado, -10}");
             }
         }else{
             Console.WriteLine("\n\t\t---HISTORIAL VACÍO---");
@@ -64,8 +65,8 @@ do{
             }
             memoria = (!double.IsNaN(nueva.Resultado)) ? nueva.Resultado : memoria;
             historial.Add(nueva);
-            Console.WriteLine(!double.IsNaN(memoria) ? 
-                    $"\n\tResultado de la operación: {memoria}" 
+            Console.WriteLine(!double.IsNaN(nueva.Resultado) ? 
+                    $"\n\tResultado de la operación: {nueva.Resultado}" 
                     : "\n\t\t---OPERACIÓN INVÁLIDA---");
         }else{
             Console.WriteLine("\n\t\tENTRADA INVALIDA");
